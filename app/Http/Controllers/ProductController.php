@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 use App\Models\Product;
+
 
 class ProductController extends Controller
 {
@@ -21,6 +23,12 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
+        if(!$product)
+        {
+            return response([
+                'message' => 'Product not found.'
+            ], 404);
+        }
         return response([
             'product' => $product,
         ], 200);
@@ -29,33 +37,28 @@ class ProductController extends Controller
     //create a Product
     public function store(Request $request)
     {
-        //validate fields
-        $attrs = $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|integer',
-            'stars' => 'required|integer',
-            'location' => 'required|string',
-        ]);
-
-
-        $product = Product::create([
-            'name' => $attrs['name'],
-            'description' => $attrs['description'],
-            'price' => $attrs['price'],
-            'stars' => $attrs['stars'],
-            'location' => $attrs['location'],
-        ]);
-
-        return response([
-            'message' => 'Product created.',
+        $product = new Product();
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->id_category = $request->input('id_category');
+        $product->image = $request->input('image');
+        $product->price = $request->input('price');
+        $product->stars = $request->input('stars', 3); // Valor padrão: 3
+        $product->location = $request->input('location', 'Toledo, PR'); // Valor padrão: 'Toledo, PR'
+        $product->visibility = $request->input('visibility', '1'); // Valor padrão: '1'
+        
+        $product->save();
+        
+        return response()->json([
+            'message' => 'Produto criado com sucesso',
             'product' => $product
-        ], 200);
+        ]);
     }
 
     //update a product
     public function update(Request $request, $id)
     {
+        $attrs = $request;
 
         $product = Product::find($id);
 
@@ -63,35 +66,49 @@ class ProductController extends Controller
         {
             return response([
                 'message' => 'Product not found.'
-            ], 403);
+            ], 404);
         }
 
-        //validate fields
-        $attrs = $request->validate([
-            'name' => 'string|max:255',
-            'description' => 'string',
-            'price' => 'numeric|between:0.00,9999999.99',
-            'stars' => 'integer',
-            'location' => 'string',
-        ]);
-
-        $image = $this->saveImage($request->image, 'profiles');
+        //$image = $this->saveImage($request->image, 'profiles');
 
         $product->update([
-            'name' => $attrs['name'],
-            'description' => $attrs['description'],
-            'image' => $image,
-            'price' => $attrs['price'],
-            'stars' => $attrs['stars'],
-            'location' => $attrs['location'],
+            'name' => $attrs['name'] ?? $product->name,
+            'description' => $attrs['description'] ?? $product->description,
+            'id_category' => $attrs['id_category'] ?? $product->id_category,
+            'price' => $attrs['price'] ?? $product->price,
+            'visibility' => $attrs['visibility'] ?? $product->visibility,
         ]);
+        
 
         return response([
+            'product' => $product,
             'message' => 'Product updated.',
-            'product' => $product
         ], 200);
     }
-    
+    public function changeVisibility($productId)
+    {
+        $product = Product::find($productId);
+        if(!$product)
+        {
+            return response([
+                'message' => 'Product not found.'
+            ], 404);
+        }
+        // Verifica a visibilidade atual
+        if ($product->visibility == '0') {
+            // Se estiver oculto, torna visível
+            $product->visibility = '1';
+        } else {
+            // Se estiver visível, torna oculto
+            $product->visibility = '0';
+        }
+        
+        $product->save();
+        return response([
+            'product' => $product,
+        ], 200);
+    }
+
     public function destroy($id)
     {
         $product = Product::find($id);
@@ -100,7 +117,7 @@ class ProductController extends Controller
         {
             return response([
                 'message' => 'Product not found.'
-            ], 403);
+            ], 404);
         }
 
         $product->delete();

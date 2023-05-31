@@ -20,9 +20,16 @@ class DatabaseSeeder extends Seeder
         // ]);
         // Inserting users
         DB::table('users')->insert([
-            ['name' => 'abc', 'email' => 'abc@gmail.com', 'password' => bcrypt('123456')],
-            ['name' => 'Usuário', 'email' => 'usuario@gmail.com', 'password' => bcrypt('123456')],
-            ['name' => 'Usuário 2', 'email' => 'usuario2@gmail.com', 'password' => bcrypt('123456')]
+            ['name' => 'abc', 'email' => 'abc@gmail.com', 'password' => bcrypt('123456'), 'isAdmin' => 1],
+            ['name' => 'Usuário', 'email' => 'usuario@gmail.com', 'password' => bcrypt('123456'), 'isAdmin' => 0],
+            ['name' => 'Usuário 2', 'email' => 'usuario2@gmail.com', 'password' => bcrypt('123456'), 'isAdmin' => 0]
+        ]);
+        
+        DB::table('categories')->insert([
+            ['name' => 'Prato principal'],
+            ['name' => 'Lanche'],
+            ['name' => 'Acompanhamento'],
+            // Adicione outras categorias aqui, se desejar
         ]);
 
         // Inserting products
@@ -30,6 +37,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Feijoada',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut vulputate arcu. Morbi nec fringilla odio. Sed viverra tristique eros, vitae ullamcorper ante consectetur a. Donec feugiat, erat quis gravida suscipit, libero sapien mattis purus, eget commodo nisi sem quis risus. Nullam facilisis pellentesque justo id varius. Ut nec metus ut libero tincidunt semper rhoncus sit amet leo. Pellentesque nunc quam, commodo aliquam nisl vitae, aliquet euismod nisl. Maecenas commodo vehicula lobortis. Cras nulla neque, sollicitudin non enim a, dignissim efficitur nisl. Maecenas euismod blandit nunc eu pretium. Sed eros risus, lacinia non dolor at, convallis vulputate sapien. Fusce efficitur pretium tortor, vel imperdiet arcu. Morbi pharetra nisi eu justo vehicula, a porta tortor dictum. Praesent hendrerit tristique mi quis pharetra. Sed gravida mi viverra, finibus lectus viverra, hendrerit nisi.',
+                'id_category' => 1,
                 'price' => 50,
                 'stars' => 5,
                 'location' => 'São Paulo'
@@ -37,6 +45,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Cachorro quente paulista',
                 'description' => 'Sed pulvinar, nulla nec rutrum convallis, ex est molestie nunc, vitae fringilla tellus elit et ex. Etiam dignissim, metus quis ornare porta, nisi nisi placerat lorem, id cursus arcu libero ac dolor. Suspendisse volutpat eros nisi, nec ultrices justo scelerisque non. Curabitur sagittis maximus ex nec hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor, quam eget imperdiet facilisis, lacus leo sagittis elit, in posuere ligula nibh vel purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean consequat lectus vitae ex molestie, eget gravida ipsum maximus.',
+                'id_category' => 2,
                 'price' => 20,
                 'stars' => 4,
                 'location' => 'São Paulo'
@@ -44,6 +53,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Maionese com pão de alho',
                 'description' => 'Cras rutrum dapibus est eu molestie. Vivamus pretium mi sed mollis tincidunt...',
+                'id_category' => 3,
                 'price' => 15,
                 'stars' => 3,
                 'location' => 'São Paulo'
@@ -51,6 +61,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Churrasco',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut vulputate arcu. Morbi nec fringilla odio. Sed viverra tristique eros, vitae ullamcorper ante consectetur a. Donec feugiat, erat quis gravida suscipit, libero sapien mattis purus, eget commodo nisi sem quis risus. Nullam facilisis pellentesque justo id varius. Ut nec metus ut libero tincidunt semper rhoncus sit amet leo.',
+                'id_category' => 1,
                 'price' => 200,
                 'stars' => 4,
                 'location' => 'São Paulo'
@@ -58,6 +69,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Lasanha de berinjela',
                 'description' => 'Sed pulvinar, nulla nec rutrum convallis, ex est molestie nunc, vitae fringilla tellus elit et ex. Etiam dignissim, metus quis ornare porta, nisi nisi placerat lorem, id cursus arcu libero ac dolor. Suspendisse volutpat eros nisi, nec ultrices justo scelerisque non. Curabitur sagittis maximus ex nec hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor, quam eget imperdiet facilisis, lacus leo sagittis elit, in posuere ligula nibh vel purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean consequat lectus vitae ex molestie, eget gravida ipsum maximus.',
+                'id_category' => 1,
                 'price' => 30,
                 'stars' => 2,
                 'location' => 'São Paulo'
@@ -65,6 +77,7 @@ class DatabaseSeeder extends Seeder
             [
                 'name' => 'Pizza de calabresa',
                 'description' => 'Cras rutrum dapibus est eu molestie. Vivamus pretium mi sed mollis tincidunt. Donec elementum vulputate metus, vehicula scelerisque enim ultricies non. Suspendisse imperdiet dui at egestas eleifend. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
+                'id_category' => 1,
                 'price' => 60,
                 'stars' => 5,
                 'location' => 'São Paulo'

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Category;
 use App\Models\Product;
 use App\Models\Orders;
 use App\Models\OrdersItems;
@@ -56,17 +57,24 @@ class OrdersItemsController extends Controller
     public function popularItems()
     {
         $limit = 5;
+        $i = 0;
         $items = OrdersItems::select('product_id', DB::raw('SUM(quantity) as total_quantity'))
             ->groupBy('product_id')
             ->orderByDesc('total_quantity')
-            ->take($limit)
             ->get();
 
         $products = [];
 
         foreach ($items as $item) {
-            $product = Product::where('id', $item->product_id)->first();
+            $i++;
+            $product = Product::where('id', $item->product_id)->where('visibility', '1')->first();
             $products[] = $product;
+            if($i >= $limit){
+                return response()->json([
+                    'products' => $products
+                ], 200);
+            }
+            
         }
 
         return response()->json([
@@ -76,7 +84,6 @@ class OrdersItemsController extends Controller
 
     public function recommendedItems($user_id)
     {
-        $limit = 5;
         $items = OrdersItems::select('product_id', DB::raw('SUM(quantity) as total_quantity'))
             ->whereIn('order_id', function ($query) use ($user_id) {
                 $query->select('id')
@@ -85,13 +92,12 @@ class OrdersItemsController extends Controller
             })
             ->groupBy('product_id')
             ->orderByDesc('total_quantity')
-            ->take($limit)
             ->get();
 
         $products = [];
 
         foreach ($items as $item) {
-            $product = Product::where('id', $item->product_id)->first();
+            $product = Product::where('id', $item->product_id)->where('visibility', '1')->first();
             $products[] = $product;
         }
 
