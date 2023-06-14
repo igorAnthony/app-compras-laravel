@@ -92,4 +92,12 @@ class AuthController extends Controller
             'user' => auth()->user()
         ], 200);
     }
+    public function showLoginForm()
+    {
+        return view('login');
+    }
+    public function showRegisterForm()
+    {
+        return view('register');
+    }
 }

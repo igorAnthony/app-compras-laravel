@@ -121,6 +121,7 @@ class ComposerStaticInit2fd8966e50f17686b7f0c9f9491ec05a
             'Laravel\\SerializableClosure\\' => 28,
             'Laravel\\Sanctum\\' => 16,
             'Laravel\\Sail\\' => 13,
+            'LaravelFrontendPresets\\BlackPreset\\' => 35,
         ),
         'I' => 
         array (
@@ -403,6 +404,11 @@ class ComposerStaticInit2fd8966e50f17686b7f0c9f9491ec05a
         array (
             0 => __DIR__ . '/..' . '/laravel/sail/src',
         ),
+        'LaravelFrontendPresets\\BlackPreset\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/presets/black/src',
+            1 => __DIR__ . '/../..' . '/presets/black/src',
+        ),
         'Illuminate\\Support\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Macroable',
@@ -508,6 +514,7 @@ class ComposerStaticInit2fd8966e50f17686b7f0c9f9491ec05a
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/AuthController.php',
+        'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\OrdersController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrdersController.php',
         'App\\Http\\Controllers\\OrdersItemsController' => __DIR__ . '/../..' . '/app/Http/Controllers/OrdersItemsController.php',
@@ -522,6 +529,7 @@ class ComposerStaticInit2fd8966e50f17686b7f0c9f9491ec05a
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Orders' => __DIR__ . '/../..' . '/app/Models/Orders.php',
         'App\\Models\\OrdersItems' => __DIR__ . '/../..' . '/app/Models/OrdersItems.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',
