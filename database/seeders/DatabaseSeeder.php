@@ -4,6 +4,8 @@ namespace Database\Seeders;
 use Illuminate\Support\Facades\DB;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Carbon\Carbon;
+use DateInterval;
 
 class DatabaseSeeder extends Seeder
 {
@@ -97,7 +99,21 @@ class DatabaseSeeder extends Seeder
             ['customer_id' => 1, 'total_amount' => 50],
             ['customer_id' => 1, 'total_amount' => 20],
             ['customer_id' => 1, 'total_amount' => 200],
+            ['customer_id' => 1, 'total_amount' => 50],
         ]);
+        $orderIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+
+        $startDateTime = Carbon::create(2023, 5, 1); // Definindo a data inicial em maio
+        $intervalMinDays = 0; // Intervalo mínimo de dias
+        $intervalMaxDays = 5; // Intervalo máximo de dias
+
+        foreach ($orderIds as $orderId) {
+            $interval = new DateInterval('P' . rand($intervalMinDays, $intervalMaxDays) . 'D'); // Gerando um intervalo aleatório
+            $timestamp = $startDateTime->add($interval); // Adicionando o intervalo à data inicial
+            DB::table('orders')
+                ->where('id', $orderId)
+                ->update(['created_at' => $timestamp]);
+        }
 
         DB::table('orders_items')->insert([
             ['order_id' => 1, 'product_id' => 1, 'quantity' => 2, 'total_price' => 100],
@@ -112,6 +128,8 @@ class DatabaseSeeder extends Seeder
             ['order_id' => 9, 'product_id' => 3, 'quantity' => 4, 'total_price' => 60],
             ['order_id' => 10, 'product_id' => 1, 'quantity' => 1, 'total_price' => 50],
             ['order_id' => 11, 'product_id' => 2, 'quantity' => 1, 'total_price' => 200],
+            ['order_id' => 12, 'product_id' => 1, 'quantity' => 1, 'total_price' => 50],
+
         ]);
 
     }

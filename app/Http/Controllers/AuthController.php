@@ -92,12 +92,13 @@ class AuthController extends Controller
             'user' => auth()->user()
         ], 200);
     }
-    public function showLoginForm()
+
+    public function getAllUsers()
     {
-        return view('login');
+        $users = User::select('id', 'name')->get();
+
+        return response()->json(['users' => $users], 200);
     }
-    public function showRegisterForm()
-    {
-        return view('register');
-    }
+
+    
 }

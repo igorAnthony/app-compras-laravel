@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrdersEvent;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
@@ -12,8 +14,7 @@ class ProductController extends Controller
     //get all products
     public function index()
     {
-        $products = Product::all();
-
+        $products = Products::all();
         return response()->json([
             'products' => $products,
         ], 200);
@@ -22,7 +23,7 @@ class ProductController extends Controller
     //get single product
     public function show($id)
     {
-        $product = Product::find($id);
+        $product = Products::find($id);
         if(!$product)
         {
             return response([
@@ -37,7 +38,7 @@ class ProductController extends Controller
     //create a Product
     public function store(Request $request)
     {
-        $product = new Product();
+        $product = new Products();
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->id_category = $request->input('id_category');
@@ -60,7 +61,7 @@ class ProductController extends Controller
     {
         $attrs = $request;
 
-        $product = Product::find($id);
+        $product = Products::find($id);
 
         if(!$product)
         {
@@ -87,7 +88,7 @@ class ProductController extends Controller
     }
     public function changeVisibility($productId)
     {
-        $product = Product::find($productId);
+        $product = Products::find($productId);
         if(!$product)
         {
             return response([
@@ -111,7 +112,7 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        $product = Product::find($id);
+        $product = Products::find($id);
 
         if(!$product)
         {
@@ -126,4 +127,81 @@ class ProductController extends Controller
             'message' => 'Product deleted.'
         ], 200);
     }
+
+    
+    //blade
+    public function indexView()
+    {
+        $products = Products::all();
+
+        return view('product.index', ['products' => $products]);
+    }
+    public function updateView(Request $request, $id)
+    {
+        $attrs = $request->all();
+
+        $product = Products::find($id);
+
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+
+        //$image = $this->saveImage($request->image, 'profiles');
+
+        $product->update([
+            'name' => $attrs['name'] ?? $product->name,
+            'description' => $attrs['description'] ?? $product->description,
+            'id_category' => $attrs['id_category'] ?? $product->id_category,
+            'price' => $attrs['price'] ?? $product->price,
+            'visibility' => $attrs['visibility'] ?? $product->visibility,
+        ]);
+
+        return redirect()->route('admin.product.show', ['id' => $product->id])->with('success', 'Product updated.');
+    }
+    public function showView($id)
+    {
+        $product = Products::find($id);
+        
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+        
+        return view('product.show', compact('product'));
+    }
+    public function destroyView($id)
+    {
+        $product = Products::find($id);
+
+        if (!$product) {
+            return redirect()->back()->with('error', 'Product not found.');
+        }
+
+        $product->delete();
+
+        return redirect()->route('admin.product.index')->with('success', 'Product deleted.');
+    }
+    // ...
+
+    public function storeView(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            // Adicione validações para os outros campos do formulário
+        ]);
+
+        $product = new Products();
+        $product->name = $request->input('name');
+        $product->description = $request->input('description');
+        $product->price = $request->input('price');
+        // Atribua os outros campos do formulário ao modelo Product
+
+        $product->save();
+
+        return redirect()->route('admin.product.index')->with('success', 'Product created successfully');
+    }
+
+    // ...
+
 }

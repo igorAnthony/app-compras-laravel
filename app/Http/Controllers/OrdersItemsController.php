@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OrdersEvent;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
@@ -23,7 +25,34 @@ class OrdersItemsController extends Controller
             'ordersitems' => $items
         ], 200);
     }
-    
+    public function store(Request $request, $orderId)
+    {
+        $items = $request->input('items');
+
+        try {
+            $orderItems = [];
+            foreach ($items as $item) {
+                $productId = $item['product_id'];
+                $quantity = $item['quantity'];
+                $totalPrice = $item['total_price'];
+
+                $orderItems[] = [
+                    'order_id' => $orderId,
+                    'product_id' => $productId,
+                    'quantity' => $quantity,
+                    'total_price' => $totalPrice
+                ];
+            }
+
+            DB::table('order_items')->insert($orderItems);
+
+            
+
+            return response()->json(['message' => 'Order items created successfully'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to create order items'], 500);
+        }
+    }
     public function show($order_id)
     {
         $items = OrdersItems::where('order_id', $order_id)->get();
@@ -35,7 +64,7 @@ class OrdersItemsController extends Controller
         $productInfo = [];
 
         foreach ($items as $item) {
-            $product = Product::where('id', $item->product_id)->first();
+            $product = Products::where('id', $item->product_id)->first();
             $productQuantity = $item->quantity;
             $productPrice = $item->quantity * $product->price;
             $productInfo[] = [
@@ -67,7 +96,7 @@ class OrdersItemsController extends Controller
 
         foreach ($items as $item) {
             $i++;
-            $product = Product::where('id', $item->product_id)->where('visibility', '1')->first();
+            $product = Products::where('id', $item->product_id)->where('visibility', '1')->first();
             $products[] = $product;
             if($i >= $limit){
                 return response()->json([
@@ -97,7 +126,7 @@ class OrdersItemsController extends Controller
         $products = [];
 
         foreach ($items as $item) {
-            $product = Product::where('id', $item->product_id)->where('visibility', '1')->first();
+            $product = Products::where('id', $item->product_id)->where('visibility', '1')->first();
             $products[] = $product;
         }
 

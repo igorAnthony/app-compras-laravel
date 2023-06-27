@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -12,7 +12,7 @@ class CategoryController extends Controller
         $categories = Category::all();
 
         return response()->json([
-            'categories' => $categories,
+            'category' => $categories,
         ], 200);
     }
 
@@ -26,31 +26,21 @@ class CategoryController extends Controller
             ], 404);
         }
         return response([
-            'categories' => $category,
+            'category' => $category,
         ], 200);
     }
 
     public function store(Request $request)
     {
-        $attrs = $request->validate([
+        $request->validate([
             'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|integer',
-            //'stars' => 'required|integer',
-            //'location' => 'required|string',
         ]);
-
 
         $category = Category::create([
-            'name' => $attrs['name'],
-            'description' => $attrs['description'],
-            'price' => $attrs['price'],
+            'name' => $request->input('name'),
         ]);
 
-        return response([
-            'categories' => $category,
-            'message' => 'Category created.',
-        ], 200);
+        return response()->json(['message' => 'Category created with success', 'category' => $category], 200);
     }
 
     public function update(Request $request, $id)
@@ -66,13 +56,8 @@ class CategoryController extends Controller
             ], 404);
         }
 
-        //$image = $this->saveImage($request->image, 'profiles');
-
         $category->update([
             'name' => $attrs['name'] ?? $category->name,
-            'description' => $attrs['description'] ?? $category->description,
-            'price' => $attrs['price'] ?? $category->price,
-            'visibility' => $attrs['visibility'] ?? $category->visibility
         ]);
         
 

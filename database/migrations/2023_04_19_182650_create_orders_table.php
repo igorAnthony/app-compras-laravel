@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->foreign('customer_id')->references('id')->on('users');
             $table->decimal('total_amount', 8, 2);
-            $table->string('order_status')->default('EM ANDAMENTO');
+            $table->integer('order_status')->default(0);
             $table->timestamps();
         });
     }
