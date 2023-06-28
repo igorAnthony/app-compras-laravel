@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\OrdersItemsController;
+use App\Http\Controllers\AddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,5 +57,11 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/{order_id}/ordersitems', [OrdersItemsController::class, 'show']);
     Route::get('/ordersitems/popular', [OrdersItemsController::class, 'popularItems']);
     Route::get('/ordersitems/recommended/{user_id}', [OrdersItemsController::class, 'recommendedItems']);
+
+    //Address
+    Route::get('/address/{id}', [AddressController::class, 'show']);
+    Route::post('/address', [AddressController::class, 'store']);
+    Route::delete('/address/{id}', [AddressController::class, 'destroy']);
+    Route::put('/address/{id}', [AddressController::class, 'update']);
 
 });

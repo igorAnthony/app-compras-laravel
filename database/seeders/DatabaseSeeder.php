@@ -131,6 +131,25 @@ class DatabaseSeeder extends Seeder
             ['order_id' => 12, 'product_id' => 1, 'quantity' => 1, 'total_price' => 50],
 
         ]);
-
+        DB::table('addresses')->insert([
+            [
+                'user_id' => 1,
+                'addressType' => 'Home',
+                'contact_person_name' => 'abc',
+                'contact_person_number' => '45991479103',
+                'address' => 'Endereço 1',
+                'latitude' => -24.73338696153586,
+                'longitude' => -53.73685178225833
+            ],
+            [
+                'user_id' => 1,
+                'addressType' => 'Office',
+                'contact_person_name' => 'abc',
+                'contact_person_number' => '45991479103',
+                'address' => 'Endereço 2',
+                'latitude' => -24.7332639003158,
+                'longitude' => -53.763438759517534
+            ]
+        ]);
     }
 }
