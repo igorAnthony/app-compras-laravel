@@ -19,10 +19,7 @@ return new class extends Migration
             $table->foreign('id_category')->references('id')->on('categories');
             $table->string('image')->nullable();
             $table->decimal('price', 8, 2);
-            $table->integer('stars')->default(3);
-            $table->string('location')->default('Toledo, PR');
             $table->string('visibility')->default('1');
-            
             $table->timestamps();
         });
     }

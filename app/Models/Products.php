@@ -16,8 +16,6 @@ class Products extends Model
         'id_category',
         'image',
         'price',
-        'stars',
-        'location',
         'visibility',
     ];
 

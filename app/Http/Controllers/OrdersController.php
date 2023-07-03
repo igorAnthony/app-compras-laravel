@@ -68,11 +68,15 @@ class OrdersController extends Controller
     {
         $customerId = $request->input('customer_id');
         $totalAmount = $request->input('total_amount');
+        $address = $request->input('address_id');
+        $paymentMethod = $request->input('payment_method');
 
         try {
             $orderId = DB::table('orders')->insertGetId([
                 'customer_id' => $customerId,
-                'total_amount' => $totalAmount
+                'total_amount' => $totalAmount,
+                'address_id' => $address,
+                'payment_method' => $paymentMethod,
             ]);
             
             return response()->json(['order_id' => $orderId], 200);

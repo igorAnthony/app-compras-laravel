@@ -60,7 +60,6 @@ class AddressController extends Controller
 
     public function update(Request $request, $id)
     {
-        $attrs = $request;
 
         $address = Address::find($id);
 
@@ -71,12 +70,12 @@ class AddressController extends Controller
         }
 
         $address->update([
-            'addressType' => $attrs['addressType'] ?? $address->addressType,
-            'contact_person_number' => $attrs['contact_person_number'] ?? $address->contact_person_number,
-            'contact_person_name' => $attrs['contact_person_name'] ?? $address->contact_person_name,
-            'address' => $attrs['address'] ?? $address->address,
-            'latitude' => $attrs['latitude'] ?? $address->latitude,
-            'longitude' => $attrs['longitude'] ?? $address->longitude,
+            'addressType' => $request['addressType'] ?? $address->addressType,
+            'contact_person_number' => $request['contact_person_number'] ?? $address->contact_person_number,
+            'contact_person_name' => $request['contact_person_name'] ?? $address->contact_person_name,
+            'address' => $request['address'] ?? $address->address,
+            'latitude' => $request['latitude'] ?? $address->latitude,
+            'longitude' => $request['longitude'] ?? $address->longitude,
         ]);
 
         return response([

@@ -26,7 +26,46 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Usuário', 'email' => 'usuario@gmail.com', 'password' => bcrypt('123456'), 'isAdmin' => 0],
             ['name' => 'Usuário 2', 'email' => 'usuario2@gmail.com', 'password' => bcrypt('123456'), 'isAdmin' => 0]
         ]);
-        
+
+        DB::table('addresses')->insert([
+            [
+                'user_id' => 1,
+                'addressType' => 'Home',
+                'contact_person_name' => 'abc',
+                'contact_person_number' => '45991479103',
+                'address' => 'Endereço 1',
+                'latitude' => -24.73338696153586,
+                'longitude' => -53.73685178225833
+            ],
+            [
+                'user_id' => 1,
+                'addressType' => 'Office',
+                'contact_person_name' => 'abc',
+                'contact_person_number' => '45991479103',
+                'address' => 'Endereço 2',
+                'latitude' => -24.7332639003158,
+                'longitude' => -53.763438759517534
+            ],
+            [
+                'user_id' => 2,
+                'addressType' => 'Home',
+                'contact_person_name' => 'abc',
+                'contact_person_number' => '45991479103',
+                'address' => 'Endereço 1',
+                'latitude' => -24.73338696153586,
+                'longitude' => -53.73685178225833
+            ],
+            [
+                'user_id' => 3,
+                'addressType' => 'Office',
+                'contact_person_name' => 'abc',
+                'contact_person_number' => '45991479103',
+                'address' => 'Endereço 2',
+                'latitude' => -24.7332639003158,
+                'longitude' => -53.763438759517534
+            ]
+        ]);
+
         DB::table('categories')->insert([
             ['name' => 'Prato principal'],
             ['name' => 'Lanche'],
@@ -41,65 +80,53 @@ class DatabaseSeeder extends Seeder
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut vulputate arcu. Morbi nec fringilla odio. Sed viverra tristique eros, vitae ullamcorper ante consectetur a. Donec feugiat, erat quis gravida suscipit, libero sapien mattis purus, eget commodo nisi sem quis risus. Nullam facilisis pellentesque justo id varius. Ut nec metus ut libero tincidunt semper rhoncus sit amet leo. Pellentesque nunc quam, commodo aliquam nisl vitae, aliquet euismod nisl. Maecenas commodo vehicula lobortis. Cras nulla neque, sollicitudin non enim a, dignissim efficitur nisl. Maecenas euismod blandit nunc eu pretium. Sed eros risus, lacinia non dolor at, convallis vulputate sapien. Fusce efficitur pretium tortor, vel imperdiet arcu. Morbi pharetra nisi eu justo vehicula, a porta tortor dictum. Praesent hendrerit tristique mi quis pharetra. Sed gravida mi viverra, finibus lectus viverra, hendrerit nisi.',
                 'id_category' => 1,
                 'price' => 50,
-                'stars' => 5,
-                'location' => 'São Paulo'
             ],
             [
                 'name' => 'Cachorro quente paulista',
                 'description' => 'Sed pulvinar, nulla nec rutrum convallis, ex est molestie nunc, vitae fringilla tellus elit et ex. Etiam dignissim, metus quis ornare porta, nisi nisi placerat lorem, id cursus arcu libero ac dolor. Suspendisse volutpat eros nisi, nec ultrices justo scelerisque non. Curabitur sagittis maximus ex nec hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor, quam eget imperdiet facilisis, lacus leo sagittis elit, in posuere ligula nibh vel purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean consequat lectus vitae ex molestie, eget gravida ipsum maximus.',
                 'id_category' => 2,
                 'price' => 20,
-                'stars' => 4,
-                'location' => 'São Paulo'
             ],
             [
                 'name' => 'Maionese com pão de alho',
                 'description' => 'Cras rutrum dapibus est eu molestie. Vivamus pretium mi sed mollis tincidunt...',
                 'id_category' => 3,
                 'price' => 15,
-                'stars' => 3,
-                'location' => 'São Paulo'
             ],
             [
                 'name' => 'Churrasco',
                 'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut vulputate arcu. Morbi nec fringilla odio. Sed viverra tristique eros, vitae ullamcorper ante consectetur a. Donec feugiat, erat quis gravida suscipit, libero sapien mattis purus, eget commodo nisi sem quis risus. Nullam facilisis pellentesque justo id varius. Ut nec metus ut libero tincidunt semper rhoncus sit amet leo.',
                 'id_category' => 1,
                 'price' => 200,
-                'stars' => 4,
-                'location' => 'São Paulo'
             ],
             [
                 'name' => 'Lasanha de berinjela',
                 'description' => 'Sed pulvinar, nulla nec rutrum convallis, ex est molestie nunc, vitae fringilla tellus elit et ex. Etiam dignissim, metus quis ornare porta, nisi nisi placerat lorem, id cursus arcu libero ac dolor. Suspendisse volutpat eros nisi, nec ultrices justo scelerisque non. Curabitur sagittis maximus ex nec hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor, quam eget imperdiet facilisis, lacus leo sagittis elit, in posuere ligula nibh vel purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean consequat lectus vitae ex molestie, eget gravida ipsum maximus.',
                 'id_category' => 1,
                 'price' => 30,
-                'stars' => 2,
-                'location' => 'São Paulo'
             ],
             [
                 'name' => 'Pizza de calabresa',
                 'description' => 'Cras rutrum dapibus est eu molestie. Vivamus pretium mi sed mollis tincidunt. Donec elementum vulputate metus, vehicula scelerisque enim ultricies non. Suspendisse imperdiet dui at egestas eleifend. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
                 'id_category' => 1,
                 'price' => 60,
-                'stars' => 5,
-                'location' => 'São Paulo'
             ]
         ]);
 
         // Inserting orders
         DB::table('orders')->insert([
-            ['customer_id' => 1, 'total_amount' => 120],
-            ['customer_id' => 2, 'total_amount' => 60],
-            ['customer_id' => 1, 'total_amount' => 50],
-            ['customer_id' => 3, 'total_amount' => 200],
-            ['customer_id' => 1, 'total_amount' => 60],
-            ['customer_id' => 2, 'total_amount' => 30],
-            ['customer_id' => 1, 'total_amount' => 300],
-            ['customer_id' => 1, 'total_amount' => 60],
-            ['customer_id' => 1, 'total_amount' => 50],
-            ['customer_id' => 1, 'total_amount' => 20],
-            ['customer_id' => 1, 'total_amount' => 200],
-            ['customer_id' => 1, 'total_amount' => 50],
+            ['customer_id' => 1, 'total_amount' => 120, 'address_id' => 1],
+            ['customer_id' => 2, 'total_amount' => 60, 'address_id' => 3],
+            ['customer_id' => 1, 'total_amount' => 50, 'address_id' => 2],
+            ['customer_id' => 3, 'total_amount' => 200, 'address_id' => 4],
+            ['customer_id' => 1, 'total_amount' => 60, 'address_id' => 1],
+            ['customer_id' => 2, 'total_amount' => 30, 'address_id' => 3],
+            ['customer_id' => 1, 'total_amount' => 300, 'address_id' => 2],
+            ['customer_id' => 1, 'total_amount' => 60, 'address_id' => 2],
+            ['customer_id' => 1, 'total_amount' => 50, 'address_id' => 1],
+            ['customer_id' => 1, 'total_amount' => 20, 'address_id' => 1],
+            ['customer_id' => 1, 'total_amount' => 200, 'address_id' => 1],
+            ['customer_id' => 1, 'total_amount' => 50, 'address_id' => 1],
         ]);
         $orderIds = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
@@ -129,27 +156,7 @@ class DatabaseSeeder extends Seeder
             ['order_id' => 10, 'product_id' => 1, 'quantity' => 1, 'total_price' => 50],
             ['order_id' => 11, 'product_id' => 2, 'quantity' => 1, 'total_price' => 200],
             ['order_id' => 12, 'product_id' => 1, 'quantity' => 1, 'total_price' => 50],
-
         ]);
-        DB::table('addresses')->insert([
-            [
-                'user_id' => 1,
-                'addressType' => 'Home',
-                'contact_person_name' => 'abc',
-                'contact_person_number' => '45991479103',
-                'address' => 'Endereço 1',
-                'latitude' => -24.73338696153586,
-                'longitude' => -53.73685178225833
-            ],
-            [
-                'user_id' => 1,
-                'addressType' => 'Office',
-                'contact_person_name' => 'abc',
-                'contact_person_number' => '45991479103',
-                'address' => 'Endereço 2',
-                'latitude' => -24.7332639003158,
-                'longitude' => -53.763438759517534
-            ]
-        ]);
+       
     }
 }
