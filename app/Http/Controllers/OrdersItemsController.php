@@ -29,29 +29,27 @@ class OrdersItemsController extends Controller
     {
         $items = $request->input('items');
 
-        try {
-            $orderItems = [];
-            foreach ($items as $item) {
-                $productId = $item['product_id'];
-                $quantity = $item['quantity'];
-                $totalPrice = $item['total_price'];
-
-                $orderItems[] = [
-                    'order_id' => $orderId,
-                    'product_id' => $productId,
-                    'quantity' => $quantity,
-                    'total_price' => $totalPrice
-                ];
-            }
-
-            DB::table('order_items')->insert($orderItems);
-
-            
-
-            return response()->json(['message' => 'Order items created successfully'], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to create order items'], 500);
+        if (empty($items)) {
+            return response()->json(['message' => 'Items not found'], 404);
         }
+
+        $orderItems = [];
+        foreach ($items as $item) {
+            $productId = $item['product_id'];
+            $quantity = $item['quantity'];
+            $totalPrice = $item['total_price'];
+
+            $orderItems[] = [
+                'order_id' => $orderId,
+                'product_id' => $productId,
+                'quantity' => $quantity,
+                'total_price' => $totalPrice
+            ];
+        }
+
+        OrdersItems::insert($orderItems);
+
+        return response()->json(['message' => 'Order items created successfully'], 200);
     }
     public function show($order_id)
     {

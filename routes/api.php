@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     //OrdersItems
     Route::get('/ordersitems', [OrdersItemsController::class, 'index']);
     Route::get('/{order_id}/ordersitems', [OrdersItemsController::class, 'show']);
+    Route::post('/orders/{order_id}', [OrdersItemsController::class, 'store']);
     Route::get('/ordersitems/popular', [OrdersItemsController::class, 'popularItems']);
     Route::get('/ordersitems/recommended/{user_id}', [OrdersItemsController::class, 'recommendedItems']);
 

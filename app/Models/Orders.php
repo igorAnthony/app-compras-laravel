@@ -10,7 +10,7 @@ use App\Models\Address;
 class Orders extends Model
 {
     use HasFactory;
-    protected $fillable = ['customer_id', 'address_id', , 'payment_method', 'order_status','total_price'];
+    protected $fillable = ['customer_id', 'address_id', 'payment_method', 'order_status','total_price'];
 
     public function ordersItems()
     {

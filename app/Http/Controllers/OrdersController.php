@@ -71,19 +71,16 @@ class OrdersController extends Controller
         $address = $request->input('address_id');
         $paymentMethod = $request->input('payment_method');
 
-        try {
-            $orderId = DB::table('orders')->insertGetId([
-                'customer_id' => $customerId,
-                'total_amount' => $totalAmount,
-                'address_id' => $address,
-                'payment_method' => $paymentMethod,
-            ]);
-            
-            return response()->json(['order_id' => $orderId], 200);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to create order'], 500);
-        }
+        $order = new Orders;
+        $order->customer_id = $customerId;
+        $order->total_amount = $totalAmount;
+        $order->address_id = $address;
+        $order->payment_method = $paymentMethod;
+        $order->save();
+        
+        return response()->json(['order_id' => $order->id], 200);
     }
+
 
     public function updateStatus(Request $request)
     {

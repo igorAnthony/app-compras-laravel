@@ -39,10 +39,11 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Products();
+        $image = $this->saveImage($request->image, 'products');
         $product->name = $request->input('name');
         $product->description = $request->input('description');
         $product->id_category = $request->input('id_category');
-        $product->image = $request->input('image');
+        $product->image = $image;
         $product->price = $request->input('price');
         $product->visibility = $request->input('visibility', '1'); 
         
@@ -68,13 +69,14 @@ class ProductController extends Controller
             ], 404);
         }
 
-        //$image = $this->saveImage($request->image, 'profiles');
+        $image = $this->saveImage($request->image, 'products');
 
         $product->update([
             'name' => $attrs['name'] ?? $product->name,
             'description' => $attrs['description'] ?? $product->description,
             'id_category' => $attrs['id_category'] ?? $product->id_category,
             'price' => $attrs['price'] ?? $product->price,
+            'image' => $image ?? $product->image,
             'visibility' => $attrs['visibility'] ?? $product->visibility,
         ]);
         
