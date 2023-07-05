@@ -77,39 +77,45 @@ class DatabaseSeeder extends Seeder
         DB::table('products')->insert([
             [
                 'name' => 'Feijoada',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut vulputate arcu. Morbi nec fringilla odio. Sed viverra tristique eros, vitae ullamcorper ante consectetur a. Donec feugiat, erat quis gravida suscipit, libero sapien mattis purus, eget commodo nisi sem quis risus. Nullam facilisis pellentesque justo id varius. Ut nec metus ut libero tincidunt semper rhoncus sit amet leo. Pellentesque nunc quam, commodo aliquam nisl vitae, aliquet euismod nisl. Maecenas commodo vehicula lobortis. Cras nulla neque, sollicitudin non enim a, dignissim efficitur nisl. Maecenas euismod blandit nunc eu pretium. Sed eros risus, lacinia non dolor at, convallis vulputate sapien. Fusce efficitur pretium tortor, vel imperdiet arcu. Morbi pharetra nisi eu justo vehicula, a porta tortor dictum. Praesent hendrerit tristique mi quis pharetra. Sed gravida mi viverra, finibus lectus viverra, hendrerit nisi.',
+                'description' => 'A feijoada é um prato tradicional da culinária brasileira, considerada uma das principais especialidades do país. É um cozido de feijão preto com uma variedade de carne de porco, como lombo, costelinha, linguiça e bacon. Também pode incluir outros cortes de carne, como orelha e pé de porco. O feijão é cozido lentamente com as carnes, resultando em um caldo rico e saboroso. A feijoada é geralmente servida com arroz branco, couve refogada, farofa, laranja e uma roda de samba. É um prato reconfortante e muito apreciado, sendo frequentemente servido em ocasiões especiais e em restaurantes especializados.',
                 'id_category' => 1,
                 'price' => 50,
+                'image' => 'http://192.168.0.114:8000/storage/products/feijoada.jpg',
             ],
             [
                 'name' => 'Cachorro quente paulista',
-                'description' => 'Sed pulvinar, nulla nec rutrum convallis, ex est molestie nunc, vitae fringilla tellus elit et ex. Etiam dignissim, metus quis ornare porta, nisi nisi placerat lorem, id cursus arcu libero ac dolor. Suspendisse volutpat eros nisi, nec ultrices justo scelerisque non. Curabitur sagittis maximus ex nec hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor, quam eget imperdiet facilisis, lacus leo sagittis elit, in posuere ligula nibh vel purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean consequat lectus vitae ex molestie, eget gravida ipsum maximus.',
+                'description' => 'O cachorro quente paulista é uma variação brasileira do clássico cachorro quente ou hot dog. Geralmente é montado com um pão de cachorro quente macio, uma salsicha cozida ou grelhada, e acompanhamentos como purê de batata, vinagrete (tomate, cebola e pimentão picados), milho, ervilha, maionese, ketchup e mostarda. Essa versão do cachorro quente é caracterizada por ser mais completo e incluir uma variedade de ingredientes, proporcionando uma combinação de sabores e texturas.',
                 'id_category' => 2,
                 'price' => 20,
+                'image' => 'http://192.168.0.114:8000/storage/products/cachorroquente.jpg',
             ],
             [
                 'name' => 'Maionese com pão de alho',
-                'description' => 'Cras rutrum dapibus est eu molestie. Vivamus pretium mi sed mollis tincidunt...',
+                'description' => 'A maionese com pão de alho é uma combinação deliciosa de acompanhamentos que é frequentemente servida em churrascos e churrasqueiras. A maionese é uma mistura cremosa feita com ovos, óleo e vinagre, enquanto o pão de alho é uma baguete ou pão italiano cortado em fatias, coberto com uma pasta de alho, manteiga e ervas. A maionese é usada como um mergulho para o pão de alho, adicionando um toque cremoso e saboroso ao pão já aromatizado com alho.',
                 'id_category' => 3,
                 'price' => 15,
+                'image' => 'http://192.168.0.114:8000/storage/products/maionesepao.jpg',
             ],
             [
                 'name' => 'Churrasco',
-                'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ut vulputate arcu. Morbi nec fringilla odio. Sed viverra tristique eros, vitae ullamcorper ante consectetur a. Donec feugiat, erat quis gravida suscipit, libero sapien mattis purus, eget commodo nisi sem quis risus. Nullam facilisis pellentesque justo id varius. Ut nec metus ut libero tincidunt semper rhoncus sit amet leo.',
+                'description' => 'O churrasco é um estilo de cozinha popular em muitas partes do mundo, especialmente no Brasil e na Argentina. Consiste em grelhar diferentes tipos de carne em fogo aberto ou em uma churrasqueira. Tradicionalmente, o churrasco inclui cortes de carne bovina, como picanha, costela e maminha, mas também pode incluir frango, linguiça, cordeiro e outros tipos de carne. O churrasco é conhecido por seu sabor defumado e suculento, resultado do lento processo de cozimento sobre brasas ou fogo.',
                 'id_category' => 1,
                 'price' => 200,
+                'image' => 'http://192.168.0.114:8000/storage/products/churrasco.jpg',
             ],
             [
                 'name' => 'Lasanha de berinjela',
-                'description' => 'Sed pulvinar, nulla nec rutrum convallis, ex est molestie nunc, vitae fringilla tellus elit et ex. Etiam dignissim, metus quis ornare porta, nisi nisi placerat lorem, id cursus arcu libero ac dolor. Suspendisse volutpat eros nisi, nec ultrices justo scelerisque non. Curabitur sagittis maximus ex nec hendrerit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor, quam eget imperdiet facilisis, lacus leo sagittis elit, in posuere ligula nibh vel purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean consequat lectus vitae ex molestie, eget gravida ipsum maximus.',
+                'description' => 'A lasanha de berinjela é uma variação da clássica lasanha italiana que substitui as camadas de massa por fatias finas de berinjela. É um prato vegetariano que geralmente inclui camadas de berinjela grelhada, molho de tomate, queijo e às vezes espinafre ou outros vegetais. A lasanha de berinjela é uma opção saudável e saborosa, pois a berinjela adiciona uma textura macia e um sabor único ao prato.',
                 'id_category' => 1,
                 'price' => 30,
+                'image' => 'http://192.168.0.114:8000/storage/products/lasanha.jpg',
             ],
             [
                 'name' => 'Pizza de calabresa',
-                'description' => 'Cras rutrum dapibus est eu molestie. Vivamus pretium mi sed mollis tincidunt. Donec elementum vulputate metus, vehicula scelerisque enim ultricies non. Suspendisse imperdiet dui at egestas eleifend. Interdum et malesuada fames ac ante ipsum primis in faucibus.',
+                'description' => 'A pizza de calabresa é uma deliciosa opção de cardápio que consiste em uma base de massa de pizza coberta com molho de tomate, queijo derretido e fatias de calabresa defumada. A calabresa é um embutido de carne suína temperada com especiarias, proporcionando um sabor levemente picante e defumado. A pizza de calabresa é uma escolha clássica e popular em muitos lugares, sendo uma opção versátil e apreciada por muitas pessoas.',
                 'id_category' => 1,
                 'price' => 60,
+                'image' => 'http://192.168.0.114:8000/storage/products/pizza.jpg',
             ]
         ]);
 
